@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const BoxContainer = styled.section`
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 10px;
-  margin: 1rem;
   cursor: pointer;
   background-color: ${({ showBackground, backgroundColor }) => {
     return showBackground ? backgroundColor : `gray`;

@@ -4,9 +4,8 @@ import { Box } from '../Box/Box';
 
 const MATCHING_BOX_NOT_FOUND = -1;
 
-export const BoxList = ({ backgroundColors, setNumGuesses, boxManager, setBoxManager }) => {
+export const BoxList = ({ numBoxes, backgroundColors, setNumGuesses, boxManager, setBoxManager }) => {
   const handleBoxClick = (index) => {
-
     if (!boxManager[index].showBackground) {
       setNumGuesses((prevNumGueses) => {
         return prevNumGueses + 1;
@@ -97,7 +96,9 @@ export const BoxList = ({ backgroundColors, setNumGuesses, boxManager, setBoxMan
 
   if (backgroundColors.length) {
     return (
-      <ListOfBoxes>
+      <ListOfBoxes
+        numBoxes={ numBoxes }
+      >
         { renderBoxes() }
       </ListOfBoxes>
     );
