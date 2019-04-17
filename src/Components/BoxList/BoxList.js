@@ -1,15 +1,10 @@
 import React from 'react';
-import { useBackgroundColors } from './UseBackgroundColors';
-import { useBoxManager } from './UseBoxManager';
 import { ListOfBoxes } from './Styles';
 import { Box } from '../Box/Box';
 
 const MATCHING_BOX_NOT_FOUND = -1;
 
-export const BoxList = ({ numBoxes, setNumGuesses }) => {
-  const backgroundColors = useBackgroundColors(numBoxes);
-  const [boxManager, setBoxManager] = useBoxManager(backgroundColors);
-
+export const BoxList = ({ backgroundColors, setNumGuesses, boxManager, setBoxManager }) => {
   const handleBoxClick = (index) => {
 
     if (!boxManager[index].showBackground) {
