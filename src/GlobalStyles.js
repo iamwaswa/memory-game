@@ -9,5 +9,6 @@ export const GlobalStyle = createGlobalStyle`
     border: none;
     box-shadow: none;
     font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
   }
 `;

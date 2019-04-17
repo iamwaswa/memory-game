@@ -12,9 +12,11 @@ export const BoxList = ({ numBoxes, setNumGuesses }) => {
 
   const handleBoxClick = (index) => {
 
-    setNumGuesses((prevNumGueses) => {
-      return prevNumGueses + 1;
-    });
+    if (!boxManager[index].showBackground) {
+      setNumGuesses((prevNumGueses) => {
+        return prevNumGueses + 1;
+      });
+    }
 
     const { backgroundColor } = boxManager[index];
     const matchingIndex = findMatching(index, backgroundColor);
@@ -49,14 +51,14 @@ export const BoxList = ({ numBoxes, setNumGuesses }) => {
       .values(boxManager)
       .filter(({ backgroundColor, showBackground, index }) => {
         return currentBackgroundColor === backgroundColor &&
-              currentIndex !== index                    &&
-              showBackground;
+               currentIndex !== index                     &&
+               showBackground;
       }
     );
-  if (matchedBoxes.length) {
-    return matchedBoxes[0].index;
-  }
-  return MATCHING_BOX_NOT_FOUND;
+    if (matchedBoxes.length) {
+      return matchedBoxes[0].index;
+    }
+    return MATCHING_BOX_NOT_FOUND;
   };
 
   const resetUnmatched = () => {
@@ -79,10 +81,9 @@ export const BoxList = ({ numBoxes, setNumGuesses }) => {
 
   const renderBoxes = () => {
     if (boxManager) {
-      const boxArray = Object.values(boxManager);
-      return boxArray
-        .map(({ backgroundColor, showBackground }, index) => {
-          
+      return Object
+        .values(boxManager)
+        .map(({ backgroundColor, showBackground, index }) => {
           return (
             <Box
               key={index}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavBar, BoxListContainer, NewGame } from './Styles';
 import { GlobalStyle } from '../../GlobalStyles';
 import { BoxList } from '../BoxList/BoxList';
 
@@ -8,18 +9,27 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
-      <nav>
+      <NavBar>
         <p>
-          { `You made ${numGuesses} gueses!` }
+          { numGuesses === 1 ? 
+            `You made ${numGuesses} guess!` 
+            : 
+              numGuesses > 1 ? 
+                `You made ${numGuesses} guesses!` 
+                : 
+                `` 
+          }
         </p>
-        <button>
+        <NewGame>
           New Game
-        </button>
-      </nav>
-      <BoxList 
-        numBoxes={16} 
-        setNumGuesses={setNumGuesses}
-      /> 
+        </NewGame>
+      </NavBar>
+      <BoxListContainer>
+        <BoxList 
+          numBoxes={16} 
+          setNumGuesses={setNumGuesses}
+        /> 
+      </BoxListContainer>
     </>
   );
 };
