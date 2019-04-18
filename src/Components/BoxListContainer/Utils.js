@@ -54,9 +54,10 @@ export const displayLevel = (numBoxes) => {
     .entries(numBoxesOptions)
     .filter(([, optionValue]) => {
       return optionValue === numBoxes;
-    })[0];
+    }
+  )[0];
 
-  return `Level: ${levelName}`;
+  return `Level: ${formatLevelName(levelName)}`;
 };
 
 export const displayNumGuesses = (gameOver, numGuesses) => {

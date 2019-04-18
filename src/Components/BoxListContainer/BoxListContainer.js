@@ -37,7 +37,7 @@ export const BoxListContainer = () => {
   };
 
   const updateGameLevel = (event) => {
-    setNumBoxes(event.target.getAttribute(`data-level-value`));
+    setNumBoxes(Number(event.target.getAttribute(`data-level-value`)));
   };
 
   return (
