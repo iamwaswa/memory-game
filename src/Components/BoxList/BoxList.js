@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListOfBoxes } from './Styles';
+import { ListOfBoxes, ListOfBoxesContainer } from './Styles';
 import { Box } from '../Box/Box';
 
 const MATCHING_BOX_NOT_FOUND = -1;
@@ -96,11 +96,13 @@ export const BoxList = ({ numBoxes, backgroundColors, setNumGuesses, boxManager,
 
   if (backgroundColors.length) {
     return (
-      <ListOfBoxes
-        numBoxes={ numBoxes }
-      >
-        { renderBoxes() }
-      </ListOfBoxes>
+      <ListOfBoxesContainer>
+        <ListOfBoxes
+          numBoxes={ numBoxes }
+        >
+          { renderBoxes() }
+        </ListOfBoxes>
+      </ListOfBoxesContainer>
     );
   }
 

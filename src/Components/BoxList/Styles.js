@@ -1,7 +1,18 @@
 import styled from 'styled-components';
+import { getClosestDivisor } from './Utils';
+
+export const ListOfBoxesContainer = styled.main `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  min-width: 320px;
+  height: auto;
+  min-height: 480px;
+  padding-top: 2rem;
+`;
 
 export const ListOfBoxes = styled.main`
-  text-align: center;
   display: grid;
   grid-template-rows: repeat(${({ numBoxes }) => {
     return numBoxes / 2;
@@ -12,60 +23,76 @@ export const ListOfBoxes = styled.main`
   grid-row-gap: 2rem;
   grid-column-gap: 2rem;
   padding: 2rem;
-  min-width: 320px;
-  min-height: 480px;
 
   @media (min-width: 428px) {
     grid-template-rows: repeat(${({ numBoxes }) => {
-      return Math.round(numBoxes / 3);
+      return numBoxes / getClosestDivisor(numBoxes, 3);
     }}, 100px);
     grid-template-columns: repeat(${({ numBoxes }) => {
-      return 3;
+      return getClosestDivisor(numBoxes, 3);
     }}, 100px);
   }
 
   @media (min-width: 560px) {
     grid-template-rows: repeat(${({ numBoxes }) => {
-      return Math.round(numBoxes / 4);
+      return numBoxes / getClosestDivisor(numBoxes, 4);
     }}, 100px);
     grid-template-columns: repeat(${({ numBoxes }) => {
-      return 4;
+      return getClosestDivisor(numBoxes, 4);
     }}, 100px);
   }
 
   @media (min-width: 698px) {
     grid-template-rows: repeat(${({ numBoxes }) => {
-      return Math.round(numBoxes / 5);
+      return numBoxes / getClosestDivisor(numBoxes, 5);
     }}, 100px);
     grid-template-columns: repeat(${({ numBoxes }) => {
-      return 5;
+      return getClosestDivisor(numBoxes, 5);
     }}, 100px);
   }
 
   @media (min-width: 820px) {
     grid-template-rows: repeat(${({ numBoxes }) => {
-      return Math.round(numBoxes / 6);
+      return numBoxes / getClosestDivisor(numBoxes, 6);
     }}, 100px);
     grid-template-columns: repeat(${({ numBoxes }) => {
-      return 6;
+      return getClosestDivisor(numBoxes, 6);
     }}, 100px);
   }
 
   @media (min-width: 956px) {
     grid-template-rows: repeat(${({ numBoxes }) => {
-      return Math.round(numBoxes / 7);
+      return numBoxes / getClosestDivisor(numBoxes, 7);
     }}, 100px);
     grid-template-columns: repeat(${({ numBoxes }) => {
-      return 7;
+      return getClosestDivisor(numBoxes, 7);
     }}, 100px);
   }
 
   @media (min-width: 1086px) {
     grid-template-rows: repeat(${({ numBoxes }) => {
-      return Math.round(numBoxes / 8);
+      return numBoxes / getClosestDivisor(numBoxes, 8);
     }}, 100px);
     grid-template-columns: repeat(${({ numBoxes }) => {
-      return 8;
+      return getClosestDivisor(numBoxes, 8);
+    }}, 100px);
+  }
+
+  @media (min-width: 1270px) {
+    grid-template-rows: repeat(${({ numBoxes }) => {
+      return numBoxes / getClosestDivisor(numBoxes, 9);
+    }}, 100px);
+    grid-template-columns: repeat(${({ numBoxes }) => {
+      return getClosestDivisor(numBoxes, 9);
+    }}, 100px);
+  }
+
+  @media (min-width: 1440px) {
+    grid-template-rows: repeat(${({ numBoxes }) => {
+      return numBoxes / getClosestDivisor(numBoxes, 10);
+    }}, 100px);
+    grid-template-columns: repeat(${({ numBoxes }) => {
+      return getClosestDivisor(numBoxes, 10);
     }}, 100px);
   }
 `;

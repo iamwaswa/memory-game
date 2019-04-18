@@ -4,7 +4,7 @@ import { BoxListContainer } from '../BoxListContainer/BoxListContainer';
 export const App = () => {
   return (
     <BoxListContainer 
-      numBoxes={ 16 }
+      numBoxes={ 20 }
     />
   )
 };
