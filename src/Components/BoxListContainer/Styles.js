@@ -28,5 +28,5 @@ export const Display = styled.section`
   grid-template-columns: auto;
   grid-row-gap: 0.5rem;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
 `;

@@ -58,14 +58,14 @@ export const BoxListContainer = () => {
           </RightSectionItem>
         </RightSectionContainer>
       </NavBar>
-      <Display>
-        <p>
-          { displayLevel(numBoxes) }
-        </p>
-        <p>
-          { displayNumGuesses(gameOver, numGuesses) }
-        </p>
-      </Display>
+        <Display>
+          <p>
+            { displayLevel(numBoxes) }
+          </p>
+          <p>
+            { displayNumGuesses(gameOver, numGuesses) }            
+          </p>
+        </Display>
       <BoxList 
         numBoxes={ numBoxes }
         backgroundColors={ backgroundColors }
