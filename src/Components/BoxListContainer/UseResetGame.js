@@ -1,8 +1,13 @@
 import React from 'react';
 import { getRandomRGBValues, generateRandomBackgroundColors, resetBoxManager } from './Utils';
 
-export const useResetGame = (numBoxes, backgroundColors, setBackgroundColors, setBoxManager, setNumGuesses) => {
+export const useResetGame = 
+(numBoxes, backgroundColors, setBackgroundColors, setBoxManager, setNumGuesses, setGameOver) => {
   const [resetGame, setResetGame] = React.useState(false);
+
+  React.useEffect(() => {
+    setResetGame(true);
+  }, [numBoxes]);
 
   React.useEffect(() => {
     if (resetGame) {
@@ -20,6 +25,7 @@ export const useResetGame = (numBoxes, backgroundColors, setBackgroundColors, se
         resetBoxManager(generatedRandomColors)
       );
       setNumGuesses(0);
+      setGameOver(false);
       setResetGame(false);
     }
   }, [backgroundColors, resetGame]);

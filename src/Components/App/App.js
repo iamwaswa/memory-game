@@ -3,8 +3,6 @@ import { BoxListContainer } from '../BoxListContainer/BoxListContainer';
 
 export const App = () => {
   return (
-    <BoxListContainer 
-      numBoxes={ 20 }
-    />
+    <BoxListContainer />
   )
 };

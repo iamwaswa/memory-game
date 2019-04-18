@@ -4,12 +4,12 @@ import { getClosestDivisor } from './Utils';
 export const ListOfBoxesContainer = styled.main `
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: auto;
   min-width: 320px;
   height: auto;
   min-height: 480px;
-  padding-top: 2rem;
+  padding-bottom: 4rem;
 `;
 
 export const ListOfBoxes = styled.main`
@@ -22,7 +22,6 @@ export const ListOfBoxes = styled.main`
   }}, 100px);
   grid-row-gap: 2rem;
   grid-column-gap: 2rem;
-  padding: 2rem;
 
   @media (min-width: 428px) {
     grid-template-rows: repeat(${({ numBoxes }) => {

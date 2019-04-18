@@ -9,6 +9,24 @@ export const NavBar = styled.nav`
   min-width: 320px;
 `;
 
-export const NewGame = styled.p`
+export const RightSectionItem = styled.p`
   cursor: pointer;
-`
+`;
+
+export const RightSectionContainer = styled.section`
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: ${({ numColumns }) => {
+    return `repeat(${numColumns}, auto)`;
+  }};
+  grid-column-gap: 1rem;
+`;
+
+export const Display = styled.section`
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: auto;
+  grid-row-gap: 0.5rem;
+  text-align: center;
+  padding: 2rem;
+`;

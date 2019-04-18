@@ -1,19 +1,43 @@
 import React from 'react';
-import { NavBar, NewGame } from './Styles';
+import { NavBar, RightSectionItem, RightSectionContainer, Display } from './Styles';
 import { GlobalStyle } from '../../GlobalStyles';
 import { BoxList } from '../BoxList/BoxList';
 import { useBoxManager } from './UseBoxManager';
 import { useBackgroundColors } from './UseBackgroundColors';
-import { useResetGame } from "./UseResetGame";
+import { useResetGame } from './UseResetGame';
+import { numBoxesOptions, formatLevelName, displayNumGuesses, displayLevel } from './Utils';
 
-export const BoxListContainer = ({ numBoxes }) => {
-  const [backgroundColors, setBackgroundColors] = useBackgroundColors(numBoxes);
-  const [boxManager, setBoxManager] = useBoxManager(backgroundColors);
+export const BoxListContainer = () => {
+  const [gameOver, setGameOver] = React.useState(false);
   const [numGuesses, setNumGuesses] = React.useState(0);
-  const setResetGame = useResetGame(numBoxes, backgroundColors, setBackgroundColors, setBoxManager, setNumGuesses);
+  const [numBoxes, setNumBoxes] = React.useState(numBoxesOptions.EASY);
+  const [backgroundColors, setBackgroundColors] = useBackgroundColors(numBoxes);
+  const [boxManager, setBoxManager] = useBoxManager(backgroundColors, setGameOver);
+  const setResetGame = useResetGame(numBoxes, backgroundColors, setBackgroundColors, setBoxManager, setNumGuesses, setGameOver);
 
   const updateResetGameState = () => {
     setResetGame(true);
+  };
+
+  const renderGameLevels = () => {
+    return Object
+      .entries(numBoxesOptions)
+      .map(([levelName, levelValue]) => {
+        return (
+          <RightSectionItem
+            key={ levelName }
+            data-level-value={ levelValue }
+            onClick={ updateGameLevel }
+          >
+            { formatLevelName(levelName) }
+          </RightSectionItem>
+        );
+      }
+    );
+  };
+
+  const updateGameLevel = (event) => {
+    setNumBoxes(event.target.getAttribute(`data-level-value`));
   };
 
   return (
@@ -21,21 +45,27 @@ export const BoxListContainer = ({ numBoxes }) => {
       <GlobalStyle />
       <NavBar>
         <p>
-          { numGuesses === 1 ? 
-            `You made ${numGuesses} guess!` 
-            : 
-              numGuesses > 1 ? 
-                `You made ${numGuesses} guesses!` 
-                : 
-                `` 
-          }
+          Memory Game
         </p>
-        <NewGame
-          onClick={ updateResetGameState }
+        <RightSectionContainer
+          numColumns={ Object.values(numBoxesOptions).length + 1 }
         >
-          New Game
-        </NewGame>
+          { renderGameLevels() }
+          <RightSectionItem
+            onClick={ updateResetGameState }
+          >
+            New Game
+          </RightSectionItem>
+        </RightSectionContainer>
       </NavBar>
+      <Display>
+        <p>
+          { displayLevel(numBoxes) }
+        </p>
+        <p>
+          { displayNumGuesses(gameOver, numGuesses) }
+        </p>
+      </Display>
       <BoxList 
         numBoxes={ numBoxes }
         backgroundColors={ backgroundColors }
